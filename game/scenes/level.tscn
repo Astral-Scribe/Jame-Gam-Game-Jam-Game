@@ -5,7 +5,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wfsmp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5x6i"]
-size = Vector2(151, 7)
+size = Vector2(792, 7)
 
 [node name="floor" type="StaticBody2D" unique_id=729262348]
 
@@ -15,7 +15,10 @@ scale = Vector2(151, 6.999999)
 texture = SubResource("PlaceholderTexture2D_wfsmp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1670772853]
-position = Vector2(20.5, 7.5)
+position = Vector2(47, 7.5)
 shape = SubResource("RectangleShape2D_m5x6i")
 
 [node name="CharacterBody2D" parent="." unique_id=524172200 instance=ExtResource("1_2q6dc")]
+jump_velocity = -200.0
+dash_velocity = 500.0
+jump_sustain = 600.0
