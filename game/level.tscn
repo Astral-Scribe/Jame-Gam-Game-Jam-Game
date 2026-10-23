@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c12qq5g6yv0s1"]
+
+[ext_resource type="PackedScene" uid="uid://c3ehi5sridm3b" path="res://playercontroller.tscn" id="1_u52ul"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wfsmp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5x6i"]
+size = Vector2(38, 7)
+
+[node name="floor" type="StaticBody2D" unique_id=729262348]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=801149957]
+position = Vector2(9, 7.5)
+scale = Vector2(37.999996, 7)
+texture = SubResource("PlaceholderTexture2D_wfsmp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1670772853]
+position = Vector2(9, 7.5)
+shape = SubResource("RectangleShape2D_m5x6i")
+
+[node name="CharacterBody2D" parent="." unique_id=524172200 instance=ExtResource("1_u52ul")]
