@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mhbrx1lyqnm2"
-path="res://.godot/imported/walk.png-738f31c67b1bde6822f184a5a56d7ca0.ctex"
+uid="uid://dj8n2b1xf52au"
+path="res://.godot/imported/hecatemastersheet.png-59a8a69b81fc15b330cbbbed4bae77db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/playersprites/walk.png"
-dest_files=["res://.godot/imported/walk.png-738f31c67b1bde6822f184a5a56d7ca0.ctex"]
+source_file="res://assets/playersprites/hecatemastersheet.png"
+dest_files=["res://.godot/imported/hecatemastersheet.png-59a8a69b81fc15b330cbbbed4bae77db.ctex"]
 
 [params]
 
