@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://ra1lsac81dyo" path="res://assets/playersprites/fall.png" id="3_aaehj"]
 [ext_resource type="Texture2D" uid="uid://dru3kmq563kgc" path="res://assets/playersprites/idle.png" id="4_w05ij"]
 [ext_resource type="Texture2D" uid="uid://mhbrx1lyqnm2" path="res://assets/playersprites/walk.png" id="5_7qyo8"]
+[ext_resource type="Texture2D" uid="uid://rkykqn12amdg" path="res://assets/playersprites/jump.png" id="5_aaehj"]
+[ext_resource type="PackedScene" uid="uid://b67vfbj02k873" path="res://scenes/ui.tscn" id="7_w05ij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfsmp"]
 size = Vector2(8, 19)
@@ -56,6 +58,34 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cg6i8"]
 atlas = ExtResource("4_w05ij")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w05ij"]
+atlas = ExtResource("5_aaehj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qyo8"]
+atlas = ExtResource("5_aaehj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcme7"]
+atlas = ExtResource("5_aaehj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3spgh"]
+atlas = ExtResource("5_aaehj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72sdr"]
+atlas = ExtResource("5_aaehj")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mayxb"]
+atlas = ExtResource("5_aaehj")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd5tk"]
+atlas = ExtResource("5_aaehj")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwlhn"]
 atlas = ExtResource("5_7qyo8")
@@ -126,7 +156,28 @@ animations = [{
 "name": &"idle",
 "speed": 6.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w05ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qyo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcme7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3spgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72sdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mayxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd5tk")
+}],
 "loop": 1,
 "name": &"jump",
 "speed": 5.0
@@ -163,3 +214,10 @@ zoom = Vector2(5, 5)
 position = Vector2(3, -4)
 sprite_frames = SubResource("SpriteFrames_wfsmp")
 animation = &"jump"
+
+[node name="Control" parent="." unique_id=1826159273 instance=ExtResource("7_w05ij")]
+offset_left = -102.0
+offset_top = -49.0
+offset_right = -102.0
+offset_bottom = -49.0
+scale = Vector2(0.997589, 1.0108423)

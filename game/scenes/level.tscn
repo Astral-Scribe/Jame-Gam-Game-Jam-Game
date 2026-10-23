@@ -2,23 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://c3ehi5sridm3b" path="res://scenes/playercontroller.tscn" id="1_2q6dc"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wfsmp"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5x6i"]
-size = Vector2(792, 7)
+size = Vector2(326, 20)
 
-[node name="floor" type="StaticBody2D" unique_id=729262348]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q6dc"]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=801149957]
-position = Vector2(20.499996, 7.5)
-scale = Vector2(151, 6.999999)
-texture = SubResource("PlaceholderTexture2D_wfsmp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1670772853]
-position = Vector2(47, 7.5)
-shape = SubResource("RectangleShape2D_m5x6i")
+[node name="Node2D" type="Node2D" unique_id=805526005]
 
 [node name="CharacterBody2D" parent="." unique_id=524172200 instance=ExtResource("1_2q6dc")]
-jump_velocity = -200.0
-dash_velocity = 500.0
-jump_sustain = 600.0
+
+[node name="floor" type="StaticBody2D" parent="." unique_id=729262348]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor" unique_id=1670772853]
+position = Vector2(18, 30)
+shape = SubResource("RectangleShape2D_m5x6i")
+
+[node name="Sprite2D" type="Sprite2D" parent="floor" unique_id=801149957]
+position = Vector2(17.99998, 30)
+scale = Vector2(325.99994, 20)
+texture = SubResource("PlaceholderTexture2D_2q6dc")
