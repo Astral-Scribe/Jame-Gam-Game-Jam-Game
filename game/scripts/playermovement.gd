@@ -1,18 +1,27 @@
 extends CharacterBody2D
 
-
+#movement values
 const speed: float = 100.0
 const jump_velocity: float = -400.0
 var dash_amount: int = 1
 var dashes_used: int = 0
-const dash_velocity: float = 500.0
+const dash_velocity: float = 1000.0
 const dash_cooldown_duration: float = 0.1
 var dash_cooldown_timer: float = 0.0
 const coyote_time_duration: float = 0.15
 var coyote_timer: float = 0.0
+var last_facing_direction: float = 1.0
+
+#sprite node reference
 @onready var animated_sprite: AnimatedSprite2D = $PlayerAnimator
 
+#animation helper variables
 var is_dashing: bool = false
+const idle_delay: float = 0.1	
+var idle_buffer_timer: float = 0.0
+
+#input values
+var last_direction_key_pressed: String = ""
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -25,25 +34,45 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_timer > 0.0):
 		velocity.y = jump_velocity
 		coyote_timer = 0.0
-
-	var direction: float = Input.get_axis("move_left", "move_right")
-
+	
+	if Input.is_action_just_pressed("move_left"):
+		last_direction_key_pressed = "left"
+	elif Input.is_action_just_pressed("move_right"):
+		last_direction_key_pressed = "right"
+	
+	var direction: float = 0.0
+	var left_held: bool = Input.is_action_pressed("move_left")
+	var right_held: bool = Input.is_action_pressed("move_right")
+	
+	if left_held and right_held:
+		direction = -1.0 if last_direction_key_pressed == "left" else 1.0
+	elif left_held:
+		direction = -1.0
+	elif right_held:
+		direction = 1.0
+	
 	if dash_cooldown_timer <= 0.0 or direction == 0.0:
 		is_dashing = false
-
+	
+	if Input.is_action_just_pressed("dash") and (dashes_used < dash_amount) and dash_cooldown_timer <= 0.0:
+				var target_dash_dir: float = direction if direction != 0.0 else last_facing_direction
+				
+				velocity.x += target_dash_dir * dash_velocity
+				dashes_used += 1
+				dash_cooldown_timer = dash_cooldown_duration
+				is_dashing = true
+	
 	if direction != 0.0:
+		idle_buffer_timer = idle_delay
+		
+		last_facing_direction = direction
 		animated_sprite.flip_h = (direction < 0.0)
-
-		if Input.is_action_just_pressed("dash") and (dashes_used < dash_amount) and dash_cooldown_timer <= 0.0:
-			velocity.x = direction * dash_velocity
-			dashes_used += 1
-			dash_cooldown_timer = dash_cooldown_duration
-			is_dashing = true
-		else:
-			if not is_dashing:
+		
+		if not is_dashing:
 				velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, speed)
+		idle_buffer_timer -= delta
 	
 	move_and_slide()
 	dash_cooldown_timer -= delta
@@ -59,7 +88,7 @@ func update_animatioons(direction: float) -> void:
 		else:
 			animated_sprite.play("fall")
 	else: 
-		if direction != 0.0:
+		if direction != 0.0 or abs(velocity.x) > 0.0 or idle_buffer_timer > 0.0:
 			animated_sprite.play("walk")
 		else:
 			animated_sprite.play("idle")
