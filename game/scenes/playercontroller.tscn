@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3ehi5sridm3b"]
 
-[ext_resource type="Script" uid="uid://c3ppt5rix50k7" path="res://playermovement.gd" id="1_ild0b"]
+[ext_resource type="Script" uid="uid://c3ppt5rix50k7" path="res://scripts/playermovement.gd" id="1_q6g60"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfsmp"]
 size = Vector2(2, 3)
@@ -8,7 +8,7 @@ size = Vector2(2, 3)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_m5x6i"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=524172200]
-script = ExtResource("1_ild0b")
+script = ExtResource("1_q6g60")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=574535359]
 shape = SubResource("RectangleShape2D_wfsmp")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c12qq5g6yv0s1"]
 
-[ext_resource type="PackedScene" uid="uid://c3ehi5sridm3b" path="res://playercontroller.tscn" id="1_u52ul"]
+[ext_resource type="PackedScene" uid="uid://c3ehi5sridm3b" path="res://scenes/playercontroller.tscn" id="1_2q6dc"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wfsmp"]
 
@@ -18,4 +18,4 @@ texture = SubResource("PlaceholderTexture2D_wfsmp")
 position = Vector2(20.5, 7.5)
 shape = SubResource("RectangleShape2D_m5x6i")
 
-[node name="CharacterBody2D" parent="." unique_id=524172200 instance=ExtResource("1_u52ul")]
+[node name="CharacterBody2D" parent="." unique_id=524172200 instance=ExtResource("1_2q6dc")]
