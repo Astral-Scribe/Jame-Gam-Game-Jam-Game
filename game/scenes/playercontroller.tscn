@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3ppt5rix50k7" path="res://scripts/playermovement.gd" id="1_q6g60"]
 [ext_resource type="Texture2D" uid="uid://dj8n2b1xf52au" path="res://assets/playersprites/hecatemastersheet.png" id="2_jwhlx"]
+[ext_resource type="Script" uid="uid://hva4nojmwlmk" path="res://scenes/hitandhurt.gd" id="4_sin08"]
 [ext_resource type="PackedScene" uid="uid://b67vfbj02k873" path="res://scenes/ui.tscn" id="7_w05ij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfsmp"]
@@ -196,6 +197,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lyo7"]
+
 [node name="Hecate" type="CharacterBody2D" unique_id=524172200]
 script = ExtResource("1_q6g60")
 
@@ -219,3 +222,9 @@ offset_top = -49.0
 offset_right = -102.0
 offset_bottom = -49.0
 scale = Vector2(0.997589, 1.0108423)
+
+[node name="hitandhurt" type="CollisionShape2D" parent="." unique_id=734454816]
+position = Vector2(-1.9999996, -5)
+scale = Vector2(0.9841699, 1.0052549)
+shape = SubResource("RectangleShape2D_1lyo7")
+script = ExtResource("4_sin08")
