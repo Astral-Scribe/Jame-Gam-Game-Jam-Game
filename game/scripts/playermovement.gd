@@ -2,16 +2,16 @@
 extends CharacterBody2D
 
 @export var speed: float = 100.0
-@export var jump_velocity: float = -400.0
+@export var jump_velocity: float = -220.0
 @export var dash_amount: int = 1
-@export var dash_velocity: float = 1000.0
+@export var dash_velocity: float = 600.0
 @export var dash_duration: float = 0.15
 @export var dash_cooldown_duration: float = 0.1
 @export var coyote_time_duration: float = 0.15
 @export var idle_delay: float = 0.2
-@export var jump_sustain: float = 1200.0
+@export var jump_sustain: float = 500.0
 @export var jump_sustain_duration: float = 0.25
-@export var fall_velocity: float = 100
+@export var fall_velocity: float = 300.0
 
 var jump_sustain_timer: float = 0.0
 var dashes_used: int = 0

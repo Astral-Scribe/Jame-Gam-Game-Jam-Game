@@ -209,10 +209,11 @@ zoom = Vector2(5, 5)
 [node name="PlayerAnimator" type="AnimatedSprite2D" parent="." unique_id=569411277]
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_wfsmp")
-animation = &"idle"
-frame_progress = 0.30554014
+animation = &"walk"
+frame_progress = 0.34557626
 
 [node name="Control" parent="." unique_id=1826159273 instance=ExtResource("7_w05ij")]
+z_index = 10
 offset_left = -102.0
 offset_top = -49.0
 offset_right = -102.0
