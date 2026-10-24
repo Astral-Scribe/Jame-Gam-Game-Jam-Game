@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var idle_delay: float = 0.2
 @export var jump_sustain: float = 1200.0
 @export var jump_sustain_duration: float = 0.25
+@export var fall_velocity: float = 100
 
 var jump_sustain_timer: float = 0.0
 var dashes_used: int = 0
@@ -44,6 +45,8 @@ func _physics_process(delta: float) -> void:
 	# Apply gravity
 	if not was_on_floor and not is_dashing:
 		velocity += get_gravity() * delta
+		if (velocity.y > fall_velocity):
+			velocity.y = fall_velocity
 		coyote_timer = maxf(coyote_timer - delta, 0.0)
 	elif was_on_floor:
 		coyote_timer = coyote_time_duration
