@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwcf70oux8ih2"
-path="res://.godot/imported/dashempty.png-97522feefb8826993043f966f3408005.ctex"
+uid="uid://dnroi1sfndtgm"
+path="res://.godot/imported/mana_empty.png-2601580194babecc644bbbd8f60014bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/dashempty.png"
-dest_files=["res://.godot/imported/dashempty.png-97522feefb8826993043f966f3408005.ctex"]
+source_file="res://assets/ui/mana_empty.png"
+dest_files=["res://.godot/imported/mana_empty.png-2601580194babecc644bbbd8f60014bd.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwt22ne84tqs8"
-path="res://.godot/imported/magicmetericon.png-13b741e29d796bce992545b8acfbb867.ctex"
+uid="uid://jl6pailosdlv"
+path="res://.godot/imported/cave.png-2510987453d6436b4d812d19d6d6d0c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/magicmetericon.png"
-dest_files=["res://.godot/imported/magicmetericon.png-13b741e29d796bce992545b8acfbb867.ctex"]
+source_file="res://assets/tilesheets/cave.png"
+dest_files=["res://.godot/imported/cave.png-2510987453d6436b4d812d19d6d6d0c0.ctex"]
 
 [params]
 

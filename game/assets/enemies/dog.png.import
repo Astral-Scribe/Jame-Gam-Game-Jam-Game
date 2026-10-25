@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6vy2abrskgsu"
-path="res://.godot/imported/dashready.png-0d3647a1ca90f3bb88ace35068ab2906.ctex"
+uid="uid://c405vaxbiqilc"
+path="res://.godot/imported/dog.png-5c655a14c274bed995058a8ebe3ed50c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/dashready.png"
-dest_files=["res://.godot/imported/dashready.png-0d3647a1ca90f3bb88ace35068ab2906.ctex"]
+source_file="res://assets/enemies/dog.png"
+dest_files=["res://.godot/imported/dog.png-5c655a14c274bed995058a8ebe3ed50c.ctex"]
 
 [params]
 

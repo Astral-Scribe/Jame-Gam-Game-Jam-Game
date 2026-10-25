@@ -1,5 +1,6 @@
-
 extends CharacterBody2D
+
+signal dash_status_changed(is_ready: bool)
 
 @export var speed: float = 100.0
 @export var jump_velocity: float = -220.0
@@ -24,6 +25,9 @@ var coyote_timer: float = 0.0
 var last_facing_direction: float = 1.0
 var idle_buffer_timer: float = 0.0
 var last_direction_key_pressed: String = ""
+
+var dash_was_ready: bool = true
+
 @onready var animated_sprite: AnimatedSprite2D = $PlayerAnimator
 
 func _physics_process(delta: float) -> void:
@@ -35,7 +39,12 @@ func _physics_process(delta: float) -> void:
 		dash_cooldown_timer = maxf(
 			dash_cooldown_timer - delta, 0.0
 		)
-
+	var is_dash_available: bool = (dashes_used < dash_amount) and (dash_cooldown_timer <= 0.0)
+	
+	if is_dash_available and not dash_was_ready:
+		dash_was_ready = true
+		dash_status_changed.emit(true)
+	
 	# Count down dash duration
 	if is_dashing:
 		dash_timer -= delta
@@ -113,6 +122,10 @@ func _physics_process(delta: float) -> void:
 		dash_timer = dash_duration
 		dash_cooldown_timer = dash_cooldown_duration
 		dashes_used += 1
+		
+		#emit unready signal when dash is consumed
+		dash_was_ready = false
+		dash_status_changed.emit(false)
 		
 		# Set velocity on x - locks speed
 		velocity.x = dash_direction * dash_velocity

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfhbwhvu24di8"
-path="res://.godot/imported/missingheart.png-8ad0e52bfd981da80b001dc7d6bbd379.ctex"
+uid="uid://b6vy2abrskgsu"
+path="res://.godot/imported/dash.png-c8a9350270df9861041182e17d843d61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/missingheart.png"
-dest_files=["res://.godot/imported/missingheart.png-8ad0e52bfd981da80b001dc7d6bbd379.ctex"]
+source_file="res://assets/ui/dash.png"
+dest_files=["res://.godot/imported/dash.png-c8a9350270df9861041182e17d843d61.ctex"]
 
 [params]
 

@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://b67vfbj02k873"]
 
+[ext_resource type="Script" uid="uid://dgyndk7of8ow5" path="res://scripts/ui.gd" id="1_gdt2y"]
 [ext_resource type="Texture2D" uid="uid://deq5a00pps1tj" path="res://assets/ui/heart.png" id="1_nt7q6"]
-[ext_resource type="Texture2D" uid="uid://dwt22ne84tqs8" path="res://assets/ui/magicmetericon.png" id="2_yev5y"]
-[ext_resource type="Texture2D" uid="uid://b6vy2abrskgsu" path="res://assets/ui/dashready.png" id="3_gdt2y"]
+[ext_resource type="Texture2D" uid="uid://dwt22ne84tqs8" path="res://assets/ui/mana.png" id="2_yev5y"]
+[ext_resource type="Texture2D" uid="uid://b6vy2abrskgsu" path="res://assets/ui/dash.png" id="3_gdt2y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1lyo7"]
 atlas = ExtResource("1_nt7q6")
@@ -24,54 +25,50 @@ offset_right = 3.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gdt2y")
 
-[node name="Health" type="Control" parent="." unique_id=1540459722]
-anchors_preset = 0
+[node name="Health_Container" type="HBoxContainer" parent="." unique_id=1995721599]
+layout_mode = 0
 offset_left = -11.0
 offset_top = -14.0
 offset_right = 37.0
 offset_bottom = 2.0
 
-[node name="heart3" type="Sprite2D" parent="Health" unique_id=1404155969]
-position = Vector2(32, 0)
+[node name="heart1" type="TextureRect" parent="Health_Container" unique_id=1609438111]
+layout_mode = 2
 texture = SubResource("AtlasTexture_1lyo7")
-centered = false
 
-[node name="heart2" type="Sprite2D" parent="Health" unique_id=344137549]
-position = Vector2(16, 0)
+[node name="heart2" type="TextureRect" parent="Health_Container" unique_id=328945892]
+layout_mode = 2
 texture = SubResource("AtlasTexture_1lyo7")
-centered = false
 
-[node name="heart1" type="Sprite2D" parent="Health" unique_id=90146319]
+[node name="heart3" type="TextureRect" parent="Health_Container" unique_id=415962694]
+layout_mode = 2
 texture = SubResource("AtlasTexture_1lyo7")
-centered = false
 
-[node name="Magic" type="Control" parent="." unique_id=996439063]
-anchors_preset = 0
-offset_left = 167.0
-offset_top = -12.0
-offset_right = 215.0
-offset_bottom = 4.0
+[node name="Mana_Container" type="HBoxContainer" parent="." unique_id=2011186285]
+layout_mode = 0
+offset_left = 157.0
+offset_top = -11.0
+offset_right = 213.0
+offset_bottom = 5.0
 
-[node name="mana3" type="Sprite2D" parent="Magic" unique_id=11860753]
-position = Vector2(25, 7)
+[node name="mana1" type="TextureRect" parent="Mana_Container" unique_id=922771623]
+layout_mode = 2
 texture = SubResource("AtlasTexture_7qyo8")
 
-[node name="mana2" type="Sprite2D" parent="Magic" unique_id=1975289363]
-position = Vector2(9, 7)
+[node name="mana2" type="TextureRect" parent="Mana_Container" unique_id=1509581016]
+layout_mode = 2
 texture = SubResource("AtlasTexture_7qyo8")
 
-[node name="mana1" type="Sprite2D" parent="Magic" unique_id=2056355893]
-position = Vector2(41, 7)
+[node name="mana3" type="TextureRect" parent="Mana_Container" unique_id=90532801]
+layout_mode = 2
 texture = SubResource("AtlasTexture_7qyo8")
 
-[node name="Dash" type="Control" parent="." unique_id=1488502780]
-anchors_preset = 0
+[node name="Dash" type="TextureRect" parent="." unique_id=350722574]
+layout_mode = 0
 offset_left = -11.0
-offset_top = 3.0
+offset_top = 2.0
 offset_right = 5.0
-offset_bottom = 19.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Dash" unique_id=1337612995]
-position = Vector2(8, 8)
+offset_bottom = 18.0
 texture = SubResource("AtlasTexture_c0k3v")
