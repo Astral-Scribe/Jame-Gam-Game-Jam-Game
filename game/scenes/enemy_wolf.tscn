@@ -137,7 +137,7 @@ position = Vector2(-1.5, 7)
 shape = SubResource("RectangleShape2D_wfsmp")
 
 [node name="PlayerDetector" type="RayCast2D" parent="." unique_id=1806303481]
-target_position = Vector2(30, 0)
+target_position = Vector2(40, 10)
 collision_mask = 4
 collide_with_areas = true
 
