@@ -159,14 +159,26 @@ func update_wolf_animations() -> void:
 		State.bite: animated_sprite.play("bite")
 
 func _on_contact_hitbox_entered(player_hurtbox: Area2D) -> void:
-	if current_state != State.bite and player_hurtbox.has_method("take_damage"):
+	var player_body = player_hurtbox.get_parent() as CharacterBody2D
+	if player_body and "is_diving" in player_body:
+		if player_body.is_diving:
+			return 
+
+	if player_hurtbox.has_method("take_damage"):
 		player_hurtbox.take_damage(contact_damage)
 		apply_player_knockback(player_hurtbox, knockback_force * 0.7)
 
+
 func _on_bite_hitbox_entered(player_hurtbox: Area2D) -> void:
+	var player_body = player_hurtbox.get_parent() as CharacterBody2D
+	if player_body and "is_diving" in player_body:
+		if player_body.is_diving:
+			return
+
 	if current_state == State.bite and player_hurtbox.has_method("take_damage"):
 		player_hurtbox.take_damage(bite_damage)
 		apply_player_knockback(player_hurtbox, knockback_force)
+
 
 func take_damage(amount: float) -> void:
 	health -= amount

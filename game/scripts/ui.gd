@@ -15,11 +15,11 @@ const dash_missing: Texture2D = preload("res://assets/ui/dash_empty.png")
 
 
 func _ready() -> void:
-	var player: CharacterBody2D = $"../../Player"
+	var player: CharacterBody2D = $".."
 	if player:
 		if player.has_signal("dash_status_changed"):
 			player.dash_status_changed.connect(_on_player_dash_status_changed)
-		var stats: Area2D = player.get_node_or_null("hitandhurt") as Area2D
+		var stats: Area2D = player.get_node_or_null("hurtbox") as Area2D
 		if stats:
 			stats.health_changed.connect(_on_player_health_changed)
 			stats.mana_changed.connect(_on_player_mana_changed)

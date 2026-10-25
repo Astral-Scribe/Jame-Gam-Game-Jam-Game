@@ -124,4 +124,5 @@ position = Vector2(6069.5425, -150.48413)
 position = Vector2(6637.7563, -102.08441)
 
 [node name="Player" parent="." unique_id=524172200 instance=ExtResource("1_2q6dc")]
+position = Vector2(7, 11)
 scale = Vector2(1.0053492, 1)

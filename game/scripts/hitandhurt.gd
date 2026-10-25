@@ -2,17 +2,18 @@ extends Area2D
 
 signal health_changed(new_health: float)
 signal mana_changed(new_mana: float)
-#player stats
+
+# Player stats
 var max_health: float = 3.0
 var current_health: float = 3.0
 var max_mana: float = 3.0
 var current_mana: float = 3.0
 
-@export var invincibility_duration: float = 0.5
+@export var invincibility_duration: float = 0.35 
 var is_invincible: bool = false
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 
-#healing variables
+# Healing variables
 var heal_cast_delay_length: float = 0.5
 var heal_cast_timer: float = 0.0
 var is_casting_heal: bool = false
@@ -25,26 +26,45 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	handle_heal_casting(delta)
 
-func take_damage(amount):
+func take_damage(amount: float) -> void: 
 	if is_invincible:
 		return
+		
+	var player_movement_node = get_parent() as CharacterBody2D
+	if player_movement_node and "is_diving" in player_movement_node:
+		if player_movement_node.is_diving:
+			return
+		
 	current_health -= amount
 	health_changed.emit(current_health)
+	
 	if current_health <= 0.0:
 		die_and_respawn()
 		return 
+		
+	if player_movement_node:
+		if "is_diving" in player_movement_node: player_movement_node.is_diving = false
+		if "is_dashing" in player_movement_node: player_movement_node.is_dashing = false
+		if "has_ground_popped" in player_movement_node: player_movement_node.has_ground_popped = false
+		var knock_dir: float = -1.0 if player_movement_node.last_facing_direction > 0.0 else 1.0
+		player_movement_node.velocity.x = knock_dir * 180.0 
+		player_movement_node.velocity.y = -120.0            
+		player_movement_node.knockback_timer = 0.2          
+		
 	is_invincible = true
 	invincibility_timer.start(invincibility_duration)
+	
 	if is_casting_heal:
 		cancel_heal()
 
 func die_and_respawn() -> void:
-		get_tree().call_deferred("reload_current_scene")
+	print("Player has died!")
+	get_tree().call_deferred("reload_current_scene")
 
 func _on_invincibility_timeout() -> void:
 	is_invincible = false
 
-func use_mana(amount) -> bool:	
+func use_mana(amount: float) -> bool:	
 	if amount <= current_mana:
 		current_mana -= amount
 		mana_changed.emit(current_mana)

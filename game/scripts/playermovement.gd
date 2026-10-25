@@ -14,6 +14,16 @@ signal dash_status_changed(is_ready: bool)
 @export var jump_sustain_duration: float = 0.25
 @export var fall_velocity: float = 300.0
 
+@export var dive_ground_pop_velocity: float = -180.0 
+@export var dive_downward_velocity: float = 450.0     
+@export var dive_horizontal_velocity: float = 300.0   
+var is_diving: bool = false
+var has_ground_popped: bool = false
+var dive_direction: float = 1.0                       
+
+var is_healing: bool = false
+var knockback_timer: float = 0.0
+
 var jump_sustain_timer: float = 0.0
 var dashes_used: int = 0
 var is_dashing: bool = false
@@ -29,59 +39,85 @@ var last_direction_key_pressed: String = ""
 var dash_was_ready: bool = true
 
 @onready var animated_sprite: AnimatedSprite2D = $PlayerAnimator
+@onready var dive_hitbox: Area2D = $divehitbox
+
+func _ready() -> void:
+	if dive_hitbox:
+		dive_hitbox.area_entered.connect(_on_dive_hitbox_area_entered)
+	sync_dash_status()
 
 func _physics_process(delta: float) -> void:
-	# Save whether on floor before movement to stop jank
 	var was_on_floor: bool = is_on_floor()
 	
-	# Clamp the dash cooldown to 0 at minimum
+	if knockback_timer > 0.0:
+		knockback_timer -= delta
+	
+	if was_on_floor and is_diving and not has_ground_popped:
+		is_diving = false
+		trigger_landing_iframes()
+
+	var stats_node = get_node_or_null("hurtbox") as Area2D
+	if stats_node and "is_casting_heal" in stats_node:
+		is_healing = stats_node.is_casting_heal
+
 	if dash_cooldown_timer > 0.0:
-		dash_cooldown_timer = maxf(
-			dash_cooldown_timer - delta, 0.0
-		)
-	var is_dash_available: bool = (dashes_used < dash_amount) and (dash_cooldown_timer <= 0.0)
-	
-	if is_dash_available and not dash_was_ready:
-		dash_was_ready = true
-		dash_status_changed.emit(true)
-	
-	# Count down dash duration
+		dash_cooldown_timer = maxf(dash_cooldown_timer - delta, 0.0)
+		
+	sync_dash_status()
+
 	if is_dashing:
 		dash_timer -= delta
 		if dash_timer <= 0.0:
 			is_dashing = false
 
-	# Apply gravity
-	if not was_on_floor and not is_dashing:
+	if Input.is_action_just_pressed("attack") and not is_dashing and not is_diving and not is_healing:
+		is_diving = true
+		dive_direction = last_facing_direction
+		
+		if was_on_floor:
+			velocity.y = dive_ground_pop_velocity
+			has_ground_popped = true
+		else:
+			velocity.y = dive_downward_velocity
+			velocity.x = dive_direction * dive_horizontal_velocity
+			has_ground_popped = false
+			
+	if not was_on_floor and not is_dashing and not (is_diving and not has_ground_popped):
 		velocity += get_gravity() * delta
-		if (velocity.y > fall_velocity):
+		
+		if is_diving and has_ground_popped and velocity.y >= 0.0:
+			velocity.y = dive_downward_velocity
+			velocity.x = dive_direction * dive_horizontal_velocity
+			has_ground_popped = false 
+			
+		if (velocity.y > fall_velocity) and not is_diving:
 			velocity.y = fall_velocity
+		elif is_diving and velocity.y > dive_downward_velocity:
+			velocity.y = dive_downward_velocity
+			
 		coyote_timer = maxf(coyote_timer - delta, 0.0)
 	elif was_on_floor:
 		coyote_timer = coyote_time_duration
 		dashes_used = 0
 	
-	# Jump, set sustaining to true until stop holding
-	if Input.is_action_just_pressed("jump"):
+	# Jump handling
+	if Input.is_action_just_pressed("jump") and not is_diving and not is_healing:
 		if was_on_floor or coyote_timer > 0.0:
 			jump_sustaining = true
 			jump_sustain_timer = jump_sustain_duration
 			velocity.y = jump_velocity
 			coyote_timer = 0.0
 
-	# Clear sustaining on release
 	if Input.is_action_just_released("jump"):
 		jump_sustaining = false
 	
-	# Apply upwards sustain while holding and moving up
-	if jump_sustaining and velocity.y < 0.0:
+	if jump_sustaining and velocity.y < 0.0 and not is_diving:
 		if jump_sustain_timer > 0.0:
 			velocity.y -= jump_sustain * delta
 			jump_sustain_timer -= delta
 	else:
 		jump_sustaining = false
 	
-	# Movement Logging
 	if Input.is_action_just_pressed("move_left"):
 		last_direction_key_pressed = "left"
 	elif Input.is_action_just_pressed("move_right"):
@@ -91,92 +127,113 @@ func _physics_process(delta: float) -> void:
 	var left_held: bool = Input.is_action_pressed("move_left")
 	var right_held: bool = Input.is_action_pressed("move_right")
 	
-	# Get overall direction in case of conflict
 	if left_held and right_held:
-		direction = (
-			-1.0 if last_direction_key_pressed == "left"
-			else 1.0
-		)
+		direction = (-1.0 if last_direction_key_pressed == "left" else 1.0)
 	elif left_held:
 		direction = -1.0
 	elif right_held:
 		direction = 1.0
 
-	# Begin dash if not dashing, has a dash, and dash not on cd 
+	# Begin dash
 	if (
 		Input.is_action_just_pressed("dash")
 		and not is_dashing
+		and not is_diving
+		and not is_healing
 		and dashes_used < dash_amount
 		and dash_cooldown_timer <= 0.0
 	):
-		dash_direction = (
-			direction if direction != 0.0
-			else last_facing_direction
-		)
-		# Hard-set direction, update sprite
+		dash_direction = (direction if direction != 0.0 else last_facing_direction)
 		last_facing_direction = dash_direction
 		animated_sprite.flip_h = dash_direction < 0.0
 
-		# Set relevant fields
 		is_dashing = true
 		dash_timer = dash_duration
 		dash_cooldown_timer = dash_cooldown_duration
 		dashes_used += 1
 		
-		#emit unready signal when dash is consumed
 		dash_was_ready = false
 		dash_status_changed.emit(false)
 		
-		# Set velocity on x - locks speed
 		velocity.x = dash_direction * dash_velocity
 		velocity.y = 0.0
 	
-	# If dashing, lock X vel to dash speed and Y vel to 0
-	if is_dashing:
+	if knockback_timer > 0.0:
+		move_and_slide()
+	elif is_dashing:
 		velocity.x = dash_direction * dash_velocity
 		velocity.y = 0.0
+		move_and_slide()
+	elif is_diving:
+		if has_ground_popped:
+			if direction != 0.0:
+				velocity.x = direction * speed
+				last_facing_direction = direction
+				animated_sprite.flip_h = (direction < 0.0)
+			move_and_slide()
+		else:
+			velocity.x = dive_direction * dive_horizontal_velocity
+			animated_sprite.flip_h = (dive_direction < 0.0)
+			
+			var collision_info = move_and_collide(velocity * delta)
+			if collision_info:
+				is_diving = false
+				trigger_landing_iframes()
+	elif is_healing:
+		velocity.x = 0.0
+		move_and_slide()
 	else:
 		if direction != 0.0:
-			# Update sprite flip, move
 			idle_buffer_timer = idle_delay
 			last_facing_direction = direction
-			animated_sprite.flip_h = direction < 0.0
+			animated_sprite.flip_h = (direction < 0.0)
 			velocity.x = direction * speed
 		else:
-			# Slow down when not holding a direction
-			velocity.x = move_toward(
-				velocity.x, 0.0, speed
-			)
-			idle_buffer_timer = maxf(
-				idle_buffer_timer - delta, 0.0
-			)
+			velocity.x = move_toward(velocity.x, 0.0, speed)
+			idle_buffer_timer = maxf(idle_buffer_timer - delta, 0.0)
+		move_and_slide()
 	
-	# Update player location
-	move_and_slide()
-	
-	# Reset dashes
 	if is_on_floor():
 		dashes_used = 0
-
 	update_animations(direction)
 
+func _on_dive_hitbox_area_entered(enemy_hurtbox: Area2D) -> void:
+	if is_diving and not has_ground_popped:
+		var enemy_stats = enemy_hurtbox.get_parent()
+		if enemy_stats.has_method("take_damage"):
+			enemy_stats.take_damage(1.0)
+			
+			is_diving = false
+			has_ground_popped = false
+			velocity = Vector2.ZERO
+			velocity.y = -200.0 # Satisfying pop upward         
+			velocity.x = -dive_direction * 120.0
+			knockback_timer = 0.18
+			trigger_landing_iframes()
+
+func trigger_landing_iframes() -> void:
+	var stats: Area2D = get_node_or_null("hurtbox") as Area2D
+	if stats and "is_invincible" in stats and "invincibility_timer" in stats:
+		stats.is_invincible = true
+		stats.invincibility_timer.start(stats.invincibility_duration)
+
+func sync_dash_status() -> void:
+	var is_dash_available: bool = (dashes_used < dash_amount) and (dash_cooldown_timer <= 0.0)
+	if is_dash_available and not dash_was_ready:
+		dash_was_ready = true
+		dash_status_changed.emit(true)
 
 func update_animations(direction: float) -> void:
-	if is_dashing:
+	if is_healing:
+		animated_sprite.play("heal")
+	elif is_diving:
+		animated_sprite.play("jump" if has_ground_popped else "attack")
+	elif is_dashing:
 		animated_sprite.play("dash")
 	elif not is_on_floor():
-		if velocity.y < 0.0:
-			# Moving upwards
-			animated_sprite.play("jump")
-		else:
-			# Moving downwards
-			animated_sprite.play("fall")
+		animated_sprite.play("jump" if velocity.y < 0.0 else "fall")
 	else:
-		if (
-			direction != 0.0
-			or absf(velocity.x) > 1.0
-			or idle_buffer_timer > 0.0
-		):
+		if (direction != 0.0 or absf(velocity.x) > 1.0 or idle_buffer_timer > 0.0):
 			animated_sprite.play("walk")
 		else:
 			animated_sprite.play("idle")

@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dum2yw3icu1t0" path="res://scenes/pause_menu.tscn" id="4_sulk2"]
 [ext_resource type="PackedScene" uid="uid://b67vfbj02k873" path="res://scenes/ui.tscn" id="7_w05ij"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfsmp"]
-size = Vector2(16, 19)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_15fmq"]
+radius = 6.0
+height = 17.72504
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qyo8"]
 atlas = ExtResource("2_jwhlx")
@@ -57,14 +58,6 @@ region = Rect2(96, 192, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lmq4j"]
 atlas = ExtResource("2_jwhlx")
 region = Rect2(0, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cg6i8"]
-atlas = ExtResource("2_jwhlx")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wwlhn"]
-atlas = ExtResource("2_jwhlx")
-region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_522im"]
 atlas = ExtResource("2_jwhlx")
@@ -140,7 +133,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"attack",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -183,17 +176,6 @@ animations = [{
 "loop": 1,
 "name": &"heal",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cg6i8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wwlhn")
-}],
-"loop": 1,
-"name": &"hurt",
-"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -256,8 +238,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
-size = Vector2(11.176928, 12.683346)
+[sub_resource type="CircleShape2D" id="CircleShape2D_15fmq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wfsmp"]
 
@@ -268,7 +249,8 @@ script = ExtResource("1_q6g60")
 [node name="PlayerJumpCollision" type="CollisionShape2D" parent="." unique_id=574535359]
 physics_interpolation_mode = 1
 position = Vector2(-2, -5)
-shape = SubResource("RectangleShape2D_wfsmp")
+scale = Vector2(0.6330204, 1.0791153)
+shape = SubResource("CapsuleShape2D_15fmq")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1886191754]
 zoom = Vector2(5, 5)
@@ -276,9 +258,8 @@ zoom = Vector2(5, 5)
 [node name="PlayerAnimator" type="AnimatedSprite2D" parent="." unique_id=569411277]
 position = Vector2(2, -12)
 sprite_frames = SubResource("SpriteFrames_wfsmp")
-animation = &"attack"
-frame = 1
-frame_progress = 0.5231801
+animation = &"fall"
+frame_progress = 0.18310064
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=522365120]
 position = Vector2(-1.9999998, -5)
@@ -288,15 +269,14 @@ collision_mask = 0
 script = ExtResource("4_sin08")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=3551002]
-position = Vector2(-7.1525574e-07, 0.99477243)
-scale = Vector2(1.0000007, 1.0000007)
-shape = SubResource("RectangleShape2D_mx8sn")
+position = Vector2(-1.016085, 0.9947722)
+scale = Vector2(0.60262436, 0.7682261)
+shape = SubResource("CircleShape2D_15fmq")
 
 [node name="InvincibilityTimer" type="Timer" parent="hurtbox" unique_id=111175142]
 wait_time = 0.5
 
 [node name="UI" parent="." unique_id=220417034 instance=ExtResource("7_w05ij")]
-visible = false
 offset_left = -103.0
 offset_top = -49.0
 offset_right = -103.0
@@ -306,7 +286,12 @@ offset_bottom = -49.0
 scale = Vector2(0.4, 0.4)
 
 [node name="divehitbox" type="Area2D" parent="." unique_id=1470422868]
+position = Vector2(4, 3)
+scale = Vector2(1.5, 1.5)
+collision_layer = 128
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="divehitbox" unique_id=126415862]
-position = Vector2(-2, -13)
+position = Vector2(-3.3333333, -9.333333)
+scale = Vector2(0.7, 0.7)
 shape = SubResource("CircleShape2D_wfsmp")

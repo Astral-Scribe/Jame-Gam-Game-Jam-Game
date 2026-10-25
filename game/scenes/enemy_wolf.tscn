@@ -108,14 +108,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfsmp"]
 size = Vector2(45, 34)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5x6i"]
-size = Vector2(18.912613, 20.697313)
+[sub_resource type="CircleShape2D" id="CircleShape2D_aaehj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lk3u3"]
-size = Vector2(24.886131, 10.279737)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7qyo8"]
+radius = 9.578291
+height = 19.156582
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjcxh"]
-size = Vector2(20, 26)
+[sub_resource type="CircleShape2D" id="CircleShape2D_c0k3v"]
 
 [node name="Enemy_Wolf" type="CharacterBody2D" unique_id=934827450]
 collision_layer = 8
@@ -140,9 +139,9 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WolfHurtbox" unique_id=1926585884]
-position = Vector2(-1.0000012, 6.999999)
+position = Vector2(-0.49999952, 8.5)
 scale = Vector2(2.537989, 1.6427253)
-shape = SubResource("RectangleShape2D_m5x6i")
+shape = SubResource("CircleShape2D_aaehj")
 
 [node name="WolfHitbox" type="Area2D" parent="." unique_id=710276478]
 collision_layer = 64
@@ -150,8 +149,8 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WolfHitbox" unique_id=1416593848]
 position = Vector2(1.0000005, 8.168446)
-scale = Vector2(1.3662227, 1.5236876)
-shape = SubResource("RectangleShape2D_lk3u3")
+scale = Vector2(1.8508528, 0.92203856)
+shape = SubResource("CapsuleShape2D_7qyo8")
 
 [node name="BiteHitbox" type="Area2D" parent="." unique_id=398776547]
 collision_layer = 16
@@ -159,7 +158,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BiteHitbox" unique_id=180450877]
 position = Vector2(15, 0)
-shape = SubResource("RectangleShape2D_mjcxh")
+shape = SubResource("CircleShape2D_c0k3v")
 
 [node name="LedgeDetector" type="RayCast2D" parent="." unique_id=1944155887]
 target_position = Vector2(0, 25)
