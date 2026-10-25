@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/hecatestheme.ogg-318d41f2567f99bb2b08b7bcfc16
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

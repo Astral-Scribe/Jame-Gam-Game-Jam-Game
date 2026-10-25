@@ -18,8 +18,11 @@ func _ready() -> void:
 	credits_back_button.pressed.connect(_on_credits_back_pressed)
 	controls_panel.visible = false
 	credits_panel.visible = false
+	musicplayer.play_track(musicplayer.menu_music)
+
 
 func _on_play_pressed()-> void:
+	musicplayer.play_track(musicplayer.level_music)
 	get_tree().change_scene_to_file("res://scenes/level.tscn")
 
 func _on_controls_pressed()-> void:

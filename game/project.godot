@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Game"
+config/name="hecate's uprising"
 run/main_scene="uid://cgoyj63c3ygiv"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+musicplayer="*uid://wjf8ygjgmxmo"
 
 [display]
 
@@ -84,3 +88,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.5686275, 0.7058824, 0.85882354, 1)

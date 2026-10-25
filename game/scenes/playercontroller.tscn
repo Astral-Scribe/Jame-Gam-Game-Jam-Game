@@ -259,7 +259,7 @@ zoom = Vector2(4, 4)
 position = Vector2(2, -12)
 sprite_frames = SubResource("SpriteFrames_wfsmp")
 animation = &"walk"
-frame_progress = 0.54413664
+frame_progress = 0.6358032
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=522365120]
 position = Vector2(-1.9999998, -5)
@@ -275,6 +275,7 @@ shape = SubResource("CircleShape2D_15fmq")
 
 [node name="InvincibilityTimer" type="Timer" parent="hurtbox" unique_id=111175142]
 wait_time = 0.5
+autostart = true
 
 [node name="UI" parent="." unique_id=220417034 instance=ExtResource("7_w05ij")]
 offset_left = -126.0

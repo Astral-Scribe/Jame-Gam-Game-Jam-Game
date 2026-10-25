@@ -31,6 +31,7 @@ theme = ExtResource("2_myx47")
 [node name="PauseTitle" type="Label" parent="MenuContainer" unique_id=236529201]
 layout_mode = 2
 text = "GAME PAUSED"
+horizontal_alignment = 1
 
 [node name="ResumeButton" type="Button" parent="MenuContainer" unique_id=509649405]
 layout_mode = 2

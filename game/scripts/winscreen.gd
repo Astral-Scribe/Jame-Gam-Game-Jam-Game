@@ -8,10 +8,12 @@ extends Control
 func _ready() -> void:
 	play_again_button.pressed.connect(_on_play_again_pressed)
 	main_menu_button.pressed.connect(_on_main_menu_pressed)
+	musicplayer.play_track(musicplayer.menu_music)
 	quit_button.pressed.connect(_on_quit_pressed)
 	
 
 func _on_play_again_pressed()-> void:
+	musicplayer.play_track(musicplayer.level_music)
 	get_tree().change_scene_to_file("res://scenes/level.tscn")
 
 func _on_main_menu_pressed()-> void:
