@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cgoyj63c3ygiv"]
+
+[ext_resource type="Script" uid="uid://dksc8vc0cb3w1" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wfsmp"]
+
+[node name="MainMenu" type="Control" unique_id=1931666338]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=308019427]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_wfsmp")
+
+[node name="MenuContainer" type="VBoxContainer" parent="." unique_id=46492807]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -81.5
+offset_right = 42.0
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MenuContainer" unique_id=2104203444]
+layout_mode = 2
+text = "Game Title"
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="MenuContainer" unique_id=407025975]
+layout_mode = 2
+text = "play"
+
+[node name="Controls" type="Button" parent="MenuContainer" unique_id=929008959]
+layout_mode = 2
+text = "controls"
+
+[node name="Credits" type="Button" parent="MenuContainer" unique_id=1465175062]
+layout_mode = 2
+text = "credits"
+
+[node name="Quit" type="Button" parent="MenuContainer" unique_id=2079485490]
+layout_mode = 2
+text = "quit"
+
+[node name="ControlsPanel" type="Panel" parent="." unique_id=1239395263]
+layout_mode = 0
+offset_left = 534.0
+offset_top = 407.5
+offset_right = 618.0
+offset_bottom = 407.5
+
+[node name="Label" type="Label" parent="ControlsPanel" unique_id=1399065657]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Lorem ipsum"
+
+[node name="BackButton" type="Button" parent="ControlsPanel" unique_id=999958668]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="CreditsPanel" type="Panel" parent="." unique_id=1582107571]
+layout_mode = 0
+offset_left = 534.0
+offset_top = 407.5
+offset_right = 618.0
+offset_bottom = 407.5
+
+[node name="Label" type="Label" parent="CreditsPanel" unique_id=1951640030]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Lorem ipsum"
+
+[node name="BackButton" type="Button" parent="CreditsPanel" unique_id=69696176]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
