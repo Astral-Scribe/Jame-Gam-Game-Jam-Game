@@ -9,7 +9,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_15fmq"]
 radius = 6.0
-height = 17.72504
+height = 14.826961
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qyo8"]
 atlas = ExtResource("2_jwhlx")
@@ -248,18 +248,18 @@ script = ExtResource("1_q6g60")
 
 [node name="PlayerJumpCollision" type="CollisionShape2D" parent="." unique_id=574535359]
 physics_interpolation_mode = 1
-position = Vector2(-2, -5)
+position = Vector2(-3, -5)
 scale = Vector2(0.6330204, 1.0791153)
 shape = SubResource("CapsuleShape2D_15fmq")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1886191754]
-zoom = Vector2(5, 5)
+zoom = Vector2(4, 4)
 
 [node name="PlayerAnimator" type="AnimatedSprite2D" parent="." unique_id=569411277]
 position = Vector2(2, -12)
 sprite_frames = SubResource("SpriteFrames_wfsmp")
-animation = &"fall"
-frame_progress = 0.18310064
+animation = &"walk"
+frame_progress = 0.54413664
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=522365120]
 position = Vector2(-1.9999998, -5)
@@ -277,13 +277,14 @@ shape = SubResource("CircleShape2D_15fmq")
 wait_time = 0.5
 
 [node name="UI" parent="." unique_id=220417034 instance=ExtResource("7_w05ij")]
-offset_left = -103.0
-offset_top = -49.0
-offset_right = -103.0
-offset_bottom = -49.0
+offset_left = -126.0
+offset_top = -60.0
+offset_right = -126.0
+offset_bottom = -60.0
+scale = Vector2(1.25, 1.25)
 
 [node name="PauseMenu" parent="." unique_id=2070311326 instance=ExtResource("4_sulk2")]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.5, 0.5)
 
 [node name="divehitbox" type="Area2D" parent="." unique_id=1470422868]
 position = Vector2(4, 3)

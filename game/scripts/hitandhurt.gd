@@ -58,7 +58,6 @@ func take_damage(amount: float) -> void:
 		cancel_heal()
 
 func die_and_respawn() -> void:
-	print("Player has died!")
 	get_tree().call_deferred("reload_current_scene")
 
 func _on_invincibility_timeout() -> void:

@@ -41,6 +41,7 @@ theme = ExtResource("2_ekxnf")
 
 [node name="Label" type="Label" parent="MenuContainer" unique_id=2104203444]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7254902, 0.5686275, 0.85882354, 1)
 theme_override_font_sizes/font_size = 26
 text = "Hecates Uprising"
 horizontal_alignment = 1

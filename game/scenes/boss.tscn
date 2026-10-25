@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://bq3umn5612du"]
+
+[ext_resource type="Script" uid="uid://d0kfv5jv8qd50" path="res://scripts/boss.gd" id="1_jncid"]
+[ext_resource type="Texture2D" uid="uid://cpdn0h6ngqmmr" path="res://assets/enemies/boss/mech.png" id="1_neq0i"]
+[ext_resource type="Texture2D" uid="uid://p5f8pyck3t26" path="res://assets/enemies/boss/rat.png" id="2_jncid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnbj4"]
+atlas = ExtResource("1_neq0i")
+region = Rect2(0, 0, 144, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3bxh"]
+atlas = ExtResource("1_neq0i")
+region = Rect2(144, 0, 144, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqpjq"]
+atlas = ExtResource("1_neq0i")
+region = Rect2(288, 0, 144, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cdgk"]
+atlas = ExtResource("1_neq0i")
+region = Rect2(432, 0, 144, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsl3t"]
+atlas = ExtResource("2_jncid")
+region = Rect2(0, 0, 11, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wfsmp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnbj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3bxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqpjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cdgk")
+}],
+"loop": 1,
+"name": &"mech",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsl3t")
+}],
+"loop": 1,
+"name": &"rat",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfsmp"]
+size = Vector2(129, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wfsmp"]
+radius = 7.0
+
+[node name="Boss" type="CharacterBody2D" unique_id=614999622]
+collision_layer = 8
+script = ExtResource("1_jncid")
+
+[node name="BossAnimator" type="AnimatedSprite2D" parent="." unique_id=550399443]
+sprite_frames = SubResource("SpriteFrames_wfsmp")
+animation = &"rat"
+
+[node name="Mech_Movement" type="CollisionShape2D" parent="." unique_id=920127239]
+position = Vector2(-3.5, 14)
+shape = SubResource("RectangleShape2D_wfsmp")
+
+[node name="MechContactHitbox" type="Area2D" parent="." unique_id=251207180]
+collision_layer = 64
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="MechContactHitbox" unique_id=1936321715]
+position = Vector2(-19, -11)
+scale = Vector2(12.326468, 7.5759854)
+polygon = PackedVector2Array(-2.5960393, -2.7719169, -0.32450485, -2.903913, 2.1904085, -2.2439327, 4.2996902, -1.5839523, 4.786448, 0.52798414, 4.6241956, 2.6399207, 5.2732053, 3.695889, 5.2732053, 5.8078256, 3.731807, 5.5438333, 4.0563116, 4.3558693, 2.677166, 1.9799405, 0.16225255, 1.4519564, -0.48675728, 6.3358097, -1.3791459, 6.3358097, -1.7847772, 4.8838534, -1.1357672, 1.1879643, -3.1639233, 0, -4.0563116, 0, -4.2996902, -1.3199605, -4.137438, -1.7159485, -3.488428, -1.8479446)
+
+[node name="MechHurtbox" type="Area2D" parent="." unique_id=199097406]
+collision_layer = 32
+collision_mask = 128
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MechHurtbox" unique_id=150579080]
+polygon = PackedVector2Array(-65, -28, -53, -34, -28, -36, -7, -33, 31, -27, 37, -23, 41, -24, 53, -30, 68, -34, 74, -32, 66, -22, 59, -15, 51, -13, 44, -11, 43, -5, 42, 4, 46, 13, 49, 20, 49, 30, 48, 38, 39, 39, 25, 33, 27, 23, 13, 5, -15, 2, -23, 36, -30, 40, -43, 29, -38, -4, -62, -8, -73, -12, -75, -25)
+
+[node name="RatHurtbox" type="Area2D" parent="." unique_id=159538515]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RatHurtbox" unique_id=123180438]
+scale = Vector2(-1.1379284, 1.5944383)
+shape = SubResource("CircleShape2D_wfsmp")
+
+[node name="PlayerDetector" type="RayCast2D" parent="." unique_id=1821053872]
+target_position = Vector2(-188, 13)
+collision_mask = 4
+collide_with_areas = true
+
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=1453321654]
+target_position = Vector2(-78, 26)
+collide_with_areas = true

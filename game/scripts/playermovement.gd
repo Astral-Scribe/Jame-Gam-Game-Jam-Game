@@ -17,6 +17,7 @@ signal dash_status_changed(is_ready: bool)
 @export var dive_ground_pop_velocity: float = -180.0 
 @export var dive_downward_velocity: float = 450.0     
 @export var dive_horizontal_velocity: float = 300.0   
+@export var dive_damage: float = 1.0
 var is_diving: bool = false
 var has_ground_popped: bool = false
 var dive_direction: float = 1.0                       
@@ -201,12 +202,11 @@ func _on_dive_hitbox_area_entered(enemy_hurtbox: Area2D) -> void:
 	if is_diving and not has_ground_popped:
 		var enemy_stats = enemy_hurtbox.get_parent()
 		if enemy_stats.has_method("take_damage"):
-			enemy_stats.take_damage(1.0)
-			
+			enemy_stats.take_damage(dive_damage)
 			is_diving = false
 			has_ground_popped = false
 			velocity = Vector2.ZERO
-			velocity.y = -200.0 # Satisfying pop upward         
+			velocity.y = -200.0       
 			velocity.x = -dive_direction * 120.0
 			knockback_timer = 0.18
 			trigger_landing_iframes()
