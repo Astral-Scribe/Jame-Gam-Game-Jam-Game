@@ -8,7 +8,7 @@ var current_health: float = 3.0
 var max_mana: float = 3.0
 var current_mana: float = 3.0
 
-@export var invincibility_duration: float = 0.1
+@export var invincibility_duration: float = 0.5
 var is_invincible: bool = false
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 
@@ -30,10 +30,16 @@ func take_damage(amount):
 		return
 	current_health -= amount
 	health_changed.emit(current_health)
+	if current_health <= 0.0:
+		die_and_respawn()
+		return 
 	is_invincible = true
 	invincibility_timer.start(invincibility_duration)
 	if is_casting_heal:
 		cancel_heal()
+
+func die_and_respawn() -> void:
+		get_tree().call_deferred("reload_current_scene")
 
 func _on_invincibility_timeout() -> void:
 	is_invincible = false

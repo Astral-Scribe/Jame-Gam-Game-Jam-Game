@@ -238,4 +238,4 @@ scale = Vector2(1.0000004, 1.0000004)
 shape = SubResource("RectangleShape2D_mx8sn")
 
 [node name="InvincibilityTimer" type="Timer" parent="hitandhurt" unique_id=111175142]
-wait_time = 0.1
+wait_time = 0.5

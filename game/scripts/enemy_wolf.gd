@@ -17,13 +17,11 @@ var current_state: State = State.walk
 var bite_timer: float = 0.0
 var bite_cooldown_timer: float = 0.0
 
-# Cooldown tracking variables
 var ledge_turn_cooldown: float = 0.0
 const ledge_turn_cooldown_duration: float = 0.25 
 var wall_turn_cooldown: float = 0.0
 const wall_turn_cooldown_duration: float = 0.25 
 
-# Rear Detection Property
 @export var rear_detection_range: float = 50.0 
 
 const idle_duration: float = 1.5
@@ -76,7 +74,6 @@ func _physics_process(delta: float) -> void:
 		State.walk:
 			velocity.x = move_direction * speed
 			
-			# Art alignment: Sprite faces left when walking left, right when moving right
 			animated_sprite.flip_h = (move_direction < 0.0)
 			
 			var hit_wall: bool = wall_detector.is_colliding()
@@ -85,7 +82,6 @@ func _physics_process(delta: float) -> void:
 			if check_for_player_behind():
 				return
 
-			# Handle solid wall bumps
 			if hit_wall and wall_turn_cooldown <= 0.0:
 				move_direction *= -1.0
 				wall_turn_cooldown = wall_turn_cooldown_duration
@@ -96,7 +92,6 @@ func _physics_process(delta: float) -> void:
 				velocity.x = 0.0
 				return
 				
-			# Handle cliff ledge boundaries
 			if hit_ledge and ledge_turn_cooldown <= 0.0 and wall_turn_cooldown <= 0.0:
 				move_direction *= -1.0
 				ledge_turn_cooldown = ledge_turn_cooldown_duration
@@ -139,9 +134,7 @@ func check_for_player_behind() -> bool:
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.new()
 	
-	# Start cast precisely at the wolf's center elevation point
 	query.from = global_position
-	# Force Y to be exactly 0 so it cannot look upwards through ceilings
 	query.to = global_position + Vector2(-move_direction * rear_detection_range, 0.0)
 	
 	query.collision_mask = player_detector.collision_mask
@@ -150,7 +143,6 @@ func check_for_player_behind() -> bool:
 	
 	var result = space_state.intersect_ray(query)
 	if result:
-		# Double-check that what we hit is actually on a similar height level
 		var hit_area = result.collider
 		if hit_area and absf(hit_area.global_position.y - global_position.y) < 20.0:
 			move_direction *= -1.0
