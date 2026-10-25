@@ -15,7 +15,7 @@ const dash_missing: Texture2D = preload("res://assets/ui/dash_empty.png")
 
 
 func _ready() -> void:
-	var player: CharacterBody2D = get_parent() as CharacterBody2D
+	var player: CharacterBody2D = $"../../Player"
 	if player:
 		if player.has_signal("dash_status_changed"):
 			player.dash_status_changed.connect(_on_player_dash_status_changed)

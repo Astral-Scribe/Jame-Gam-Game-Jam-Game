@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0lmpb74ep317" path="res://assets/tilesheets/ground.png" id="2_w7c3h"]
 [ext_resource type="Texture2D" uid="uid://jl6pailosdlv" path="res://assets/tilesheets/cave.png" id="3_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://clvrgbh0rwl5w" path="res://scenes/enemy_wolf.tscn" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://dum2yw3icu1t0" path="res://scenes/pause_menu.tscn" id="6_2r41h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w8frs"]
 texture = ExtResource("2_w7c3h")
@@ -84,7 +85,16 @@ sources/2 = SubResource("TileSetAtlasSource_ppgk2")
 
 [node name="Node2D" type="Node2D" unique_id=805526005]
 
-[node name="CharacterBody2D" parent="." unique_id=524172200 instance=ExtResource("1_2q6dc")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=525147879]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=2070311326 instance=ExtResource("6_2r41h")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Player" parent="." unique_id=524172200 instance=ExtResource("1_2q6dc")]
 scale = Vector2(1.0053492, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=23068655]

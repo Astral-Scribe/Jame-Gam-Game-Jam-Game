@@ -217,14 +217,6 @@ position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_wfsmp")
 animation = &"fall"
 
-[node name="Control" parent="." unique_id=1826159273 instance=ExtResource("7_w05ij")]
-z_index = 10
-offset_left = -102.0
-offset_top = -49.0
-offset_right = -102.0
-offset_bottom = -49.0
-scale = Vector2(0.997589, 1.0108423)
-
 [node name="hitandhurt" type="Area2D" parent="." unique_id=522365120]
 position = Vector2(-1.9999996, -5)
 scale = Vector2(0.9841699, 1.0052549)
@@ -239,3 +231,9 @@ shape = SubResource("RectangleShape2D_mx8sn")
 
 [node name="InvincibilityTimer" type="Timer" parent="hitandhurt" unique_id=111175142]
 wait_time = 0.5
+
+[node name="Control" parent="." unique_id=220417034 instance=ExtResource("7_w05ij")]
+offset_left = -103.0
+offset_top = -49.0
+offset_right = -103.0
+offset_bottom = -49.0
