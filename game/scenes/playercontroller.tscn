@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://dlqxf2phkpvs5" path="res://assets/playersprites/oldhecatemastersheet.png" id="3_w05ij"]
 [ext_resource type="Script" uid="uid://hva4nojmwlmk" path="res://scripts/hitandhurt.gd" id="4_sin08"]
 [ext_resource type="PackedScene" uid="uid://dum2yw3icu1t0" path="res://scenes/pause_menu.tscn" id="4_sulk2"]
-[ext_resource type="Theme" uid="uid://bcjjqs4t77yku" path="res://theme.tres" id="6_aaehj"]
 [ext_resource type="PackedScene" uid="uid://b67vfbj02k873" path="res://scenes/ui.tscn" id="7_w05ij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfsmp"]
@@ -258,7 +257,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
-size = Vector2(16.257355, 17.905907)
+size = Vector2(11.176928, 12.683346)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wfsmp"]
 
 [node name="Hecate" type="CharacterBody2D" unique_id=524172200]
 collision_layer = 2
@@ -273,35 +274,39 @@ shape = SubResource("RectangleShape2D_wfsmp")
 zoom = Vector2(5, 5)
 
 [node name="PlayerAnimator" type="AnimatedSprite2D" parent="." unique_id=569411277]
-position = Vector2(0, -6)
+position = Vector2(2, -12)
 sprite_frames = SubResource("SpriteFrames_wfsmp")
 animation = &"attack"
-frame_progress = 0.23548144
+frame = 1
+frame_progress = 0.5231801
 
-[node name="hitandhurt" type="Area2D" parent="." unique_id=522365120]
-position = Vector2(-1.9999996, -5)
+[node name="hurtbox" type="Area2D" parent="." unique_id=522365120]
+position = Vector2(-1.9999998, -5)
 scale = Vector2(0.9841699, 1.0052549)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("4_sin08")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitandhurt" unique_id=3551002]
-position = Vector2(-7.1525574e-07, 0)
-scale = Vector2(1.0000004, 1.0000004)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=3551002]
+position = Vector2(-7.1525574e-07, 0.99477243)
+scale = Vector2(1.0000007, 1.0000007)
 shape = SubResource("RectangleShape2D_mx8sn")
 
-[node name="InvincibilityTimer" type="Timer" parent="hitandhurt" unique_id=111175142]
+[node name="InvincibilityTimer" type="Timer" parent="hurtbox" unique_id=111175142]
 wait_time = 0.5
 
-[node name="Control" parent="." unique_id=220417034 instance=ExtResource("7_w05ij")]
+[node name="UI" parent="." unique_id=220417034 instance=ExtResource("7_w05ij")]
+visible = false
 offset_left = -103.0
 offset_top = -49.0
 offset_right = -103.0
 offset_bottom = -49.0
 
 [node name="PauseMenu" parent="." unique_id=2070311326 instance=ExtResource("4_sulk2")]
-offset_left = -1.0
-offset_top = 14.0
-offset_right = -1.0
-offset_bottom = 14.0
-theme = ExtResource("6_aaehj")
+scale = Vector2(0.4, 0.4)
+
+[node name="divehitbox" type="Area2D" parent="." unique_id=1470422868]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="divehitbox" unique_id=126415862]
+position = Vector2(-2, -13)
+shape = SubResource("CircleShape2D_wfsmp")

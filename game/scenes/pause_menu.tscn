@@ -40,6 +40,23 @@ text = "Resume"
 layout_mode = 2
 text = "Controls"
 
+[node name="ControlsInfo" type="Label" parent="MenuContainer/ControlsButton" unique_id=2051926674]
+layout_mode = 0
+offset_left = 220.0
+offset_top = -78.0
+offset_right = 337.0
+offset_bottom = 90.0
+theme = ExtResource("2_myx47")
+text = "Controls:
+
+left: A
+right: d
+jump: space
+dash: shift
+heal: h
+attack: left click
+pause: escape"
+
 [node name="MainMenuButton" type="Button" parent="MenuContainer" unique_id=2130478138]
 layout_mode = 2
 text = "Main Menu"

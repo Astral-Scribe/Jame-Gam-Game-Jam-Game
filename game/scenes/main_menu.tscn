@@ -75,7 +75,15 @@ offset_left = -150.0
 offset_top = -168.5
 offset_right = -73.0
 offset_bottom = -145.5
-text = "Lorem ipsum"
+text = "Controls:
+
+left: A
+right: d
+jump: space
+dash: shift
+heal: h
+attack: left click
+pause: escape"
 
 [node name="BackButton" type="Button" parent="ControlsPanel" unique_id=999958668]
 layout_mode = 0
