@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dum2yw3icu1t0"]
 
 [ext_resource type="Script" uid="uid://bswwd57842u04" path="res://scripts/pause_menu.gd" id="1_n87rw"]
+[ext_resource type="Theme" uid="uid://bcjjqs4t77yku" path="res://theme.tres" id="2_myx47"]
 
 [node name="PauseMenu" type="Control" unique_id=2070311326]
 process_mode = 3
@@ -25,6 +26,7 @@ offset_right = 56.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_myx47")
 
 [node name="PauseTitle" type="Label" parent="MenuContainer" unique_id=236529201]
 layout_mode = 2

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cgoyj63c3ygiv"]
 
 [ext_resource type="Script" uid="uid://dksc8vc0cb3w1" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Theme" uid="uid://bcjjqs4t77yku" path="res://theme.tres" id="2_ekxnf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wfsmp"]
 
@@ -36,10 +37,12 @@ offset_right = 42.0
 offset_bottom = 81.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_ekxnf")
 
 [node name="Label" type="Label" parent="MenuContainer" unique_id=2104203444]
 layout_mode = 2
-text = "Game Title"
+theme_override_font_sizes/font_size = 26
+text = "Hecates Uprising"
 horizontal_alignment = 1
 
 [node name="Play" type="Button" parent="MenuContainer" unique_id=407025975]
@@ -60,36 +63,63 @@ text = "quit"
 
 [node name="ControlsPanel" type="Panel" parent="." unique_id=1239395263]
 layout_mode = 0
-offset_left = 534.0
-offset_top = 407.5
-offset_right = 618.0
-offset_bottom = 407.5
+offset_left = 498.0
+offset_top = 405.0
+offset_right = 582.0
+offset_bottom = 405.0
+theme = ExtResource("2_ekxnf")
 
 [node name="Label" type="Label" parent="ControlsPanel" unique_id=1399065657]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -150.0
+offset_top = -168.5
+offset_right = -73.0
+offset_bottom = -145.5
 text = "Lorem ipsum"
 
 [node name="BackButton" type="Button" parent="ControlsPanel" unique_id=999958668]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = -139.0
+offset_top = 41.5
+offset_right = -99.0
+offset_bottom = 65.5
+text = "back"
 
 [node name="CreditsPanel" type="Panel" parent="." unique_id=1582107571]
 layout_mode = 0
-offset_left = 534.0
-offset_top = 407.5
-offset_right = 618.0
-offset_bottom = 407.5
+offset_left = 682.0
+offset_top = 200.0
+offset_right = 766.0
+offset_bottom = 200.0
+theme = ExtResource("2_ekxnf")
 
 [node name="Label" type="Label" parent="CreditsPanel" unique_id=1951640030]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Lorem ipsum"
+offset_left = 19.0
+offset_top = -47.0
+offset_right = 172.0
+offset_bottom = 254.0
+text = "CREDITS: 
+
+Programming Lead:
+Ophelia W
+Assistant Programmer:
+Nekomope
+Lead Artist:
+Nekomope
+Assistant Artist:
+Ophelia W
+Character Design:
+Nekomope
+Original Score:
+Ophelia W
+Augie Pixel Font:
+Augie Ruben"
 
 [node name="BackButton" type="Button" parent="CreditsPanel" unique_id=69696176]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 15.0
+offset_top = 277.0
+offset_right = 93.0
+offset_bottom = 303.0
+text = "Back"

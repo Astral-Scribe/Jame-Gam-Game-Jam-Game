@@ -35,4 +35,4 @@ func _on_controls_back_pressed() -> void:
 	controls_panel.visible = false 
 
 func _on_credits_back_pressed() -> void:
-	credits_panel.visible
+	credits_panel.visible = false

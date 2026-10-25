@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://bcjjqs4t77yku"]
+
+[ext_resource type="FontFile" uid="uid://chradej2kbeed" path="res://assets/fonts/augiepixel.ttf" id="1_e1x85"]
+
+[resource]
+default_font = ExtResource("1_e1x85")

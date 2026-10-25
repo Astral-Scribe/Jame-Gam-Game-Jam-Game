@@ -3,67 +3,74 @@
 [ext_resource type="Script" uid="uid://mtxlnlnjv6c0" path="res://scripts/enemy_wolf.gd" id="1_15fmq"]
 [ext_resource type="Texture2D" uid="uid://c405vaxbiqilc" path="res://assets/enemies/dog.png" id="2_i7yfu"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_15fmq"]
+atlas = ExtResource("2_i7yfu")
+region = Rect2(0, 66, 50, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7yfu"]
+atlas = ExtResource("2_i7yfu")
+region = Rect2(50, 66, 50, 33)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_htpev"]
 atlas = ExtResource("2_i7yfu")
-region = Rect2(0, 120, 52, 37)
+region = Rect2(100, 66, 50, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ggmub"]
 atlas = ExtResource("2_i7yfu")
-region = Rect2(52, 120, 52, 37)
+region = Rect2(150, 66, 50, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ljiah"]
 atlas = ExtResource("2_i7yfu")
-region = Rect2(104, 120, 52, 37)
+region = Rect2(0, 0, 50, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xij7m"]
 atlas = ExtResource("2_i7yfu")
-region = Rect2(156, 120, 52, 37)
+region = Rect2(50, 0, 50, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wa7lp"]
 atlas = ExtResource("2_i7yfu")
-region = Rect2(208, 120, 52, 37)
+region = Rect2(100, 0, 50, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sp25p"]
 atlas = ExtResource("2_i7yfu")
-region = Rect2(0, 2, 52, 47)
+region = Rect2(150, 0, 50, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_efb2o"]
 atlas = ExtResource("2_i7yfu")
-region = Rect2(52, 2, 52, 47)
+region = Rect2(0, 33, 50, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ytnvd"]
 atlas = ExtResource("2_i7yfu")
-region = Rect2(156, 2, 52, 47)
+region = Rect2(50, 33, 50, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xhkpf"]
 atlas = ExtResource("2_i7yfu")
-region = Rect2(104, 2, 52, 47)
+region = Rect2(100, 33, 50, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wf6ru"]
 atlas = ExtResource("2_i7yfu")
-region = Rect2(0, 55, 52, 47)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_clh7c"]
-atlas = ExtResource("2_i7yfu")
-region = Rect2(52, 55, 52, 47)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p21mt"]
-atlas = ExtResource("2_i7yfu")
-region = Rect2(104, 55, 52, 47)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ac54p"]
-atlas = ExtResource("2_i7yfu")
-region = Rect2(156, 55, 52, 47)
+region = Rect2(150, 33, 50, 33)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sin08"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_15fmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7yfu")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_htpev")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ggmub")
+}],
+"loop": 1,
+"name": &"bite",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ljiah")
 }, {
@@ -72,15 +79,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wa7lp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp25p")
 }],
 "loop": 1,
-"name": &"bite",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sp25p")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_efb2o")
 }, {
@@ -89,23 +96,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xhkpf")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 5.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wf6ru")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_clh7c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p21mt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ac54p")
 }],
 "loop": 1,
 "name": &"walk",
@@ -129,8 +122,9 @@ collision_layer = 8
 script = ExtResource("1_15fmq")
 
 [node name="WolfAnimator" type="AnimatedSprite2D" parent="." unique_id=535326398]
+position = Vector2(-1, 7)
 sprite_frames = SubResource("SpriteFrames_sin08")
-animation = &"idle"
+animation = &"bite"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=938777970]
 position = Vector2(-1.5, 7)
