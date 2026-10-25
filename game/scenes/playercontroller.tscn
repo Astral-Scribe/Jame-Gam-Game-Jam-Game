@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c3ppt5rix50k7" path="res://scripts/playermovement.gd" id="1_q6g60"]
 [ext_resource type="Texture2D" uid="uid://dj8n2b1xf52au" path="res://assets/playersprites/hecatemastersheet.png" id="2_jwhlx"]
 [ext_resource type="Script" uid="uid://hva4nojmwlmk" path="res://scripts/hitandhurt.gd" id="4_sin08"]
+[ext_resource type="PackedScene" uid="uid://dum2yw3icu1t0" path="res://scenes/pause_menu.tscn" id="4_sulk2"]
 [ext_resource type="PackedScene" uid="uid://b67vfbj02k873" path="res://scenes/ui.tscn" id="7_w05ij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfsmp"]
@@ -237,3 +238,7 @@ offset_left = -103.0
 offset_top = -49.0
 offset_right = -103.0
 offset_bottom = -49.0
+
+[node name="PauseMenu" parent="." unique_id=2070311326 instance=ExtResource("4_sulk2")]
+offset_top = -1.0
+offset_bottom = -1.0

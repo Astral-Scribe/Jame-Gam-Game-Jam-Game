@@ -12,15 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n87rw")
 
-[node name="BackgroundDim" type="ColorRect" parent="." unique_id=1578939621]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.6509804)
-
 [node name="MenuContainer" type="VBoxContainer" parent="." unique_id=168719574]
 layout_mode = 1
 anchors_preset = 8
