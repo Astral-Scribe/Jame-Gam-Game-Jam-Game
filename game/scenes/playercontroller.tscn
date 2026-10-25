@@ -5,9 +5,6 @@
 [ext_resource type="Script" uid="uid://hva4nojmwlmk" path="res://scripts/hitandhurt.gd" id="4_sin08"]
 [ext_resource type="PackedScene" uid="uid://b67vfbj02k873" path="res://scenes/ui.tscn" id="7_w05ij"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfsmp"]
-size = Vector2(16, 19)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwhlx"]
 atlas = ExtResource("2_jwhlx")
 region = Rect2(0, 139, 21, 21)
@@ -200,18 +197,13 @@ animations = [{
 [node name="Hecate" type="CharacterBody2D" unique_id=524172200]
 script = ExtResource("1_q6g60")
 
-[node name="PlayerJumpCollision" type="CollisionShape2D" parent="." unique_id=574535359]
-position = Vector2(-2, -5)
-shape = SubResource("RectangleShape2D_wfsmp")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1886191754]
 zoom = Vector2(5, 5)
 
 [node name="PlayerAnimator" type="AnimatedSprite2D" parent="." unique_id=569411277]
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_wfsmp")
-animation = &"walk"
-frame_progress = 0.34557626
+animation = &"fall"
 
 [node name="Control" parent="." unique_id=1826159273 instance=ExtResource("7_w05ij")]
 z_index = 10

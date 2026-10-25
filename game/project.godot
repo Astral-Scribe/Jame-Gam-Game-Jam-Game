@@ -52,6 +52,16 @@ heal={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player_Movement"
+2d_physics/layer_3="Player_Hurtbox"
+2d_physics/layer_5="Enemy_Attacks"
+2d_physics/layer_6="Enemy_Hurtboxes"
+2d_physics/layer_7="Enemy_Contact_Hitboxes"
+2d_physics/layer_8="Player_Attacks"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
