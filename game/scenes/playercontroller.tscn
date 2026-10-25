@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://hva4nojmwlmk" path="res://scripts/hitandhurt.gd" id="4_sin08"]
 [ext_resource type="PackedScene" uid="uid://b67vfbj02k873" path="res://scenes/ui.tscn" id="7_w05ij"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfsmp"]
+size = Vector2(16, 19)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwhlx"]
 atlas = ExtResource("2_jwhlx")
 region = Rect2(0, 139, 21, 21)
@@ -194,8 +197,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
+size = Vector2(16.257355, 17.905907)
+
 [node name="Hecate" type="CharacterBody2D" unique_id=524172200]
+collision_layer = 2
 script = ExtResource("1_q6g60")
+
+[node name="PlayerJumpCollision" type="CollisionShape2D" parent="." unique_id=574535359]
+physics_interpolation_mode = 1
+position = Vector2(-2, -5)
+shape = SubResource("RectangleShape2D_wfsmp")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1886191754]
 zoom = Vector2(5, 5)
@@ -216,4 +228,14 @@ scale = Vector2(0.997589, 1.0108423)
 [node name="hitandhurt" type="Area2D" parent="." unique_id=522365120]
 position = Vector2(-1.9999996, -5)
 scale = Vector2(0.9841699, 1.0052549)
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("4_sin08")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitandhurt" unique_id=3551002]
+position = Vector2(-7.1525574e-07, 0)
+scale = Vector2(1.0000004, 1.0000004)
+shape = SubResource("RectangleShape2D_mx8sn")
+
+[node name="InvincibilityTimer" type="Timer" parent="hitandhurt" unique_id=111175142]
+wait_time = 0.1

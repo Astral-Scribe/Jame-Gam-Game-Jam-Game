@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c3ehi5sridm3b" path="res://scenes/playercontroller.tscn" id="1_2q6dc"]
 [ext_resource type="Texture2D" uid="uid://0lmpb74ep317" path="res://assets/tilesheets/ground.png" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://clvrgbh0rwl5w" path="res://scenes/enemy_wolf.tscn" id="3_w8frs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w8frs"]
 texture = ExtResource("2_w7c3h")
@@ -75,3 +76,6 @@ offset_right = 8221.0
 offset_bottom = -855.0
 scale = Vector2(3.5047588, 3.5964003)
 text = "BOSS AREA"
+
+[node name="Enemy_Wolf" parent="TileMapLayer" unique_id=934827450 instance=ExtResource("3_w8frs")]
+position = Vector2(858, -384)

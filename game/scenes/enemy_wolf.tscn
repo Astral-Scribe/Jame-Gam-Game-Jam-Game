@@ -125,25 +125,27 @@ size = Vector2(24.886131, 10.279737)
 size = Vector2(20, 26)
 
 [node name="Enemy_Wolf" type="CharacterBody2D" unique_id=934827450]
+collision_layer = 8
 script = ExtResource("1_15fmq")
 
 [node name="WolfAnimator" type="AnimatedSprite2D" parent="." unique_id=535326398]
 sprite_frames = SubResource("SpriteFrames_sin08")
-animation = &"bite"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=938777970]
-visible = false
 position = Vector2(-1.5, 7)
 shape = SubResource("RectangleShape2D_wfsmp")
 
 [node name="PlayerDetector" type="RayCast2D" parent="." unique_id=1806303481]
+target_position = Vector2(30, 0)
+collision_mask = 4
+collide_with_areas = true
 
 [node name="WolfHurtbox" type="Area2D" parent="." unique_id=945888419]
 collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WolfHurtbox" unique_id=1926585884]
-visible = false
 position = Vector2(-1.0000012, 6.999999)
 scale = Vector2(2.537989, 1.6427253)
 shape = SubResource("RectangleShape2D_m5x6i")
@@ -153,7 +155,6 @@ collision_layer = 64
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WolfHitbox" unique_id=1416593848]
-visible = false
 position = Vector2(1.0000005, 8.168446)
 scale = Vector2(1.3662227, 1.5236876)
 shape = SubResource("RectangleShape2D_lk3u3")
@@ -163,6 +164,12 @@ collision_layer = 16
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BiteHitbox" unique_id=180450877]
-visible = false
 position = Vector2(15, 0)
 shape = SubResource("RectangleShape2D_mjcxh")
+
+[node name="LedgeDetector" type="RayCast2D" parent="." unique_id=1944155887]
+target_position = Vector2(0, 25)
+
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=1549980377]
+scale = Vector2(0.99506134, 1)
+target_position = Vector2(35, 10)

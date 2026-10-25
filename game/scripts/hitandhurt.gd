@@ -4,23 +4,39 @@ signal health_changed(new_health: float)
 signal mana_changed(new_mana: float)
 #player stats
 var max_health: float = 3.0
-var current_health: float = 2.0
+var current_health: float = 3.0
 var max_mana: float = 3.0
 var current_mana: float = 3.0
+
+@export var invincibility_duration: float = 0.1
+var is_invincible: bool = false
+@onready var invincibility_timer: Timer = $InvincibilityTimer
 
 #healing variables
 var heal_cast_delay_length: float = 0.5
 var heal_cast_timer: float = 0.0
 var is_casting_heal: bool = false
 
+func _ready() -> void:
+	current_health = max_health
+	current_mana = max_mana
+	invincibility_timer.timeout.connect(_on_invincibility_timeout)
+
 func _physics_process(delta: float) -> void:
 	handle_heal_casting(delta)
 
 func take_damage(amount):
+	if is_invincible:
+		return
 	current_health -= amount
 	health_changed.emit(current_health)
+	is_invincible = true
+	invincibility_timer.start(invincibility_duration)
 	if is_casting_heal:
 		cancel_heal()
+
+func _on_invincibility_timeout() -> void:
+	is_invincible = false
 
 func use_mana(amount) -> bool:	
 	if amount <= current_mana:
@@ -38,6 +54,7 @@ func handle_heal_casting(delta: float) -> void:
 			else:
 				return
 		if is_casting_heal:
+			heal_cast_timer += delta
 			if heal_cast_timer >= heal_cast_delay_length:
 				current_health = min(current_health + 1.0, max_health)
 				health_changed.emit(current_health)
