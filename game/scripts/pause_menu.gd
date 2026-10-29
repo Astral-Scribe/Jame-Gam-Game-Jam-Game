@@ -12,7 +12,7 @@ func _ready() -> void:
 	controls_button.pressed.connect(_on_controls_pressed)
 	main_menu_button.pressed.connect(_on_main_menu_pressed)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		if get_tree().paused:
 			unpause_game()
